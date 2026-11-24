@@ -1,0 +1,712 @@
+/* =========================================================================
+   ABAS DE ETAPAS DA INVESTIGAÇÃO / CENA
+   ========================================================================= */
+.step-tabs-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.step-tab-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 9px 15px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 320px;
+  transition: all 0.15s ease;
+}
+
+.step-tab-btn:hover {
+  border-color: var(--border-accent);
+  color: var(--text);
+  background: var(--surface-elevated);
+}
+
+.step-tab-btn.active {
+  background: var(--primary-soft);
+  border-color: var(--primary);
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.step-tab-btn.completed {
+  border-left: 3px solid var(--success);
+}
+
+.step-tab-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Badges / Etiquetas de Arquivo */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 5px;
+  font-size: 11.5px;
+  font-weight: 700;
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+}
+.badge.primary {
+  background: var(--primary-soft);
+  color: var(--primary);
+  border-color: var(--border-accent);
+}
+.badge.danger {
+  background: var(--danger-soft);
+  color: var(--danger);
+  border-color: rgba(248, 113, 113, 0.3);
+}
+.badge.success {
+  background: var(--success-soft);
+  color: var(--success);
+  border-color: rgba(74, 222, 128, 0.3);
+}
+.badge.warning {
+  background: var(--warning-soft);
+  color: var(--warning);
+  border-color: var(--warning-border);
+}
+.badge.info {
+  background: var(--info-soft);
+  color: var(--info);
+  border-color: rgba(56, 189, 248, 0.3);
+}
+.badge.violet {
+  background: var(--violet-soft);
+  color: var(--violet);
+  border-color: rgba(192, 132, 252, 0.3);
+}
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+.grid-poi-form { display: grid; grid-template-columns: 160px 1fr; gap: 14px; }
+
+label {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.inline-drawer-form {
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* =========================================================================
+   1. CARD DE ETAPA (DOSSIÊ DA CENA)
+   ========================================================================= */
+.step-card {
+  position: relative;
+  background: linear-gradient(165deg, var(--surface-elevated) 0%, var(--surface) 38%, var(--surface) 100%);
+  border: 1px solid var(--border-strong);
+  border-top: 3px solid var(--primary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 22px;
+  box-shadow: var(--shadow-md);
+}
+
+.step-card::after {
+  content: "";
+  position: absolute;
+  top: 52px;
+  right: 16px;
+  width: 74px;
+  height: 74px;
+  pointer-events: none;
+  background-color: var(--primary);
+  opacity: 0.045;
+  -webkit-mask-image: var(--element-sigil);
+  mask-image: var(--element-sigil);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.step-card.completed {
+  border-top-color: var(--success);
+}
+
+.step-card-header {
+  background: var(--surface-elevated);
+  border-bottom: 1px solid var(--border);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.step-card-title {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.step-card-body {
+  padding: 20px;
+}
+
+/* Caixa de Narração para os Jogadores (Estilo Roteiro de Mesa) */
+.narration-script-card {
+  position: relative;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      transparent 27px,
+      rgba(128, 128, 128, 0.045) 28px
+    ),
+    var(--surface-alt);
+  border: 1px solid var(--border-strong);
+  border-left: 4px solid var(--primary);
+  border-radius: var(--radius);
+  padding: 16px 22px;
+  margin-bottom: 22px;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.14);
+}
+
+.narration-script-label {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  color: var(--primary);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.narration-box {
+  font-size: 16px;
+  white-space: pre-wrap;
+  line-height: 1.75;
+  color: var(--text);
+  max-width: 78ch;
+}
+
+.step-pois-wrapper {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+
+.step-sub-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.step-sub-title {
+  font-size: 12.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--text-secondary);
+}
+
+/* =========================================================================
+   2. PONTOS DE INTERESSE (LOCAL DE INVESTIGAÇÃO vs OBJETO / PISTA)
+   ========================================================================= */
+.poi-card {
+  border-radius: var(--radius-lg);
+  margin-bottom: 20px;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--surface) 0%, var(--surface-alt) 100%);
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-sm);
+}
+
+/* LOCAL: Painel Azul/Ciano limpo */
+.poi-card.poi-local {
+  border-left: 4px solid var(--poi-local);
+}
+
+.poi-card.poi-local .poi-card-header {
+  background: var(--poi-local-soft);
+  border-bottom: 1px solid var(--border);
+}
+
+/* OBJETO: Card Âmbar limpo (sem borda tracejada poluída) */
+.poi-card.poi-objeto {
+  border-left: 4px solid var(--poi-objeto);
+}
+
+.poi-card.poi-objeto .poi-card-header {
+  background: var(--poi-objeto-soft);
+  border-bottom: 1px solid var(--border);
+}
+
+.poi-card.discovered {
+  border-color: rgba(74, 222, 128, 0.35);
+}
+
+.poi-card-header {
+  padding: 13px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.poi-card-title {
+  font-size: 16.5px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.poi-card-body {
+  padding: 16px 18px;
+}
+
+.poi-description {
+  font-size: 15px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+  max-width: 78ch;
+}
+
+.poi-children-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 12px;
+}
+
+.poi-zone-block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.poi-child-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  gap: 8px;
+}
+
+.poi-child-title {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* =========================================================================
+   3. CARD DE TESTE (PERÍCIA, DT E DESFECHO)
+   ========================================================================= */
+.test-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--violet);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.test-card-header {
+  background: var(--violet-soft);
+  border-bottom: 1px solid var(--border);
+  padding: 11px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.test-card-title {
+  font-size: 15.5px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.dt-shield {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 5px;
+  font-size: 12.5px;
+  font-weight: 800;
+  background: var(--danger-soft);
+  color: var(--danger);
+  border: 1px solid rgba(248, 113, 113, 0.35);
+}
+
+.test-card-body {
+  padding: 14px 16px;
+}
+
+.test-action-desc {
+  font-size: 15px;
+  color: var(--text);
+  white-space: pre-wrap;
+  line-height: 1.65;
+  margin-bottom: 10px;
+  max-width: 78ch;
+}
+
+.mechanic-book-box {
+  background: var(--warning-soft);
+  border: 1px solid var(--warning-border);
+  border-left: 3px solid var(--warning);
+  border-radius: 6px;
+  padding: 11px 14px;
+  margin: 10px 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.mechanic-book-title {
+  font-weight: 800;
+  color: var(--warning);
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+  display: block;
+}
+
+/* Caixas Lado a Lado de Sucesso vs Falha */
+.test-outcomes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+@media (max-width: 900px) {
+  .test-outcomes-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.outcome-box {
+  border-radius: 6px;
+  padding: 11px 14px;
+  font-size: 14.2px;
+  line-height: 1.55;
+}
+
+.outcome-box.success {
+  background: var(--success-soft);
+  border: 1px solid rgba(74, 222, 128, 0.25);
+  border-left: 3px solid var(--success);
+}
+
+.outcome-box.failure {
+  background: var(--danger-soft);
+  border: 1px solid rgba(248, 113, 113, 0.25);
+  border-left: 3px solid var(--danger);
+}
+
+.outcome-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 4px;
+}
+
+.outcome-box.success .outcome-label { color: var(--success); }
+.outcome-box.failure .outcome-label { color: var(--danger); }
+
+.test-roll-strip {
+  background: var(--surface-elevated);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-top: 1px solid var(--border);
+}
+
+.test-roll-strip select {
+  width: auto;
+  padding: 5px 9px;
+  font-size: 13.5px;
+}
+
+/* =========================================================================
+   SIMULADOR INTERATIVO: TERMO DE DADOS
+   ========================================================================= */
+.termo-box {
+  margin-top: 12px;
+  padding: 14px 16px;
+  background: var(--surface-alt);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius);
+}
+
+.termo-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.termo-secret-strip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.termo-die-slot {
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-weight: 800;
+  font-size: 16px;
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-accent);
+  color: var(--primary);
+}
+
+.termo-guess-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.termo-guess-input {
+  width: 54px !important;
+  text-align: center;
+  font-weight: 800;
+  font-size: 15px !important;
+  padding: 6px 4px !important;
+}
+
+.termo-attempt-line {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+  padding: 6px 0;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+}
+
+.termo-pill {
+  padding: 4px 9px;
+  border-radius: 5px;
+  font-weight: 800;
+  font-size: 12.5px;
+}
+.termo-pill.exact {
+  background: var(--success-soft);
+  color: var(--success);
+  border: 1px solid rgba(74, 222, 128, 0.35);
+}
+.termo-pill.high {
+  background: var(--danger-soft);
+  color: var(--danger);
+  border: 1px solid rgba(248, 113, 113, 0.35);
+}
+.termo-pill.low {
+  background: var(--info-soft);
+  color: var(--info);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+}
+
+/* =========================================================================
+   4. CARD DE PISTA / EVIDÊNCIA / ITEM (ETIQUETA DE ARQUIVO LIMPA)
+   ========================================================================= */
+.item-ticket-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--warning);
+  border-radius: var(--radius);
+  padding: 13px 16px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  transition: opacity 0.15s ease;
+}
+
+.item-ticket-card.cat-equip { border-left-color: var(--info); }
+.item-ticket-card.cat-consumivel { border-left-color: var(--success); }
+.item-ticket-card.cat-amaldicoado { border-left-color: var(--violet); }
+.item-ticket-card.collected { opacity: 0.65; }
+
+.item-ticket-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.item-icon-badge {
+  width: 38px;
+  height: 38px;
+  border-radius: 7px;
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.item-ticket-title {
+  font-size: 15.5px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.item-ticket-desc {
+  font-size: 14.5px;
+  color: var(--text-secondary);
+  margin-top: 5px;
+  white-space: pre-wrap;
+  line-height: 1.65;
+  max-width: 74ch;
+}
+
+/* =========================================================================
+   5. CARD DE NPC / ENTIDADE PARANORMAL (FICHA DE DOSSIÊ)
+   ========================================================================= */
+.npc-dossier-card {
+  background: linear-gradient(165deg, var(--surface-elevated) 0%, var(--surface) 45%);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--danger);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 18px;
+  box-shadow: var(--shadow-sm);
+}
+
+.npc-dossier-card.role-aliado { border-top-color: var(--success); }
+.npc-dossier-card.role-neutro { border-top-color: var(--warning); }
+
+.npc-dossier-header {
+  background: var(--surface-elevated);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.npc-dossier-name {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.npc-dossier-body {
+  padding: 16px 18px;
+}
+
+.npc-vitals-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 820px) {
+  .npc-vitals-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.npc-vital-meter {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 11px 14px;
+}
+
+.npc-vital-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.npc-vital-bar-track {
+  width: 100%;
+  height: 7px;
+  background: var(--surface-elevated);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.npc-vital-bar-fill {
+  height: 100%;
+  transition: width 0.2s ease;
+}
+.npc-vital-bar-fill.hp { background: var(--danger); }
+.npc-vital-bar-fill.pd { background: var(--info); }
+
+.npc-actions-box {
+  font-size: 14.5px;
+  white-space: pre-wrap;
+  line-height: 1.65;
+  margin-top: 14px;
+  padding: 12px 15px;
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-secondary);
+}

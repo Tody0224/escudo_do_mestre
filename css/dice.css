@@ -1,0 +1,132 @@
+/* =========================================================================
+   PAINEL DIREITO: CENTRAL DE DADOS (LIMPO E DIRETO)
+   ========================================================================= */
+aside.dice-sidebar {
+  width: 318px;
+  background: linear-gradient(180deg, var(--surface-elevated) 0%, var(--surface) 18%, var(--surface) 100%);
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.25);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+aside.dice-sidebar.collapsed {
+  display: none;
+}
+
+.dice-header {
+  padding: 15px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--surface);
+}
+
+.dice-header h2 {
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.dice-mode-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-alt);
+}
+
+.dice-mode-btn {
+  border: none;
+  border-radius: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  padding: 10px 8px;
+  font-size: 13.5px;
+  color: var(--text-muted);
+}
+
+.dice-mode-btn.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+  background: var(--surface);
+}
+
+.dice-body {
+  padding: 16px;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.quick-dice-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 7px;
+}
+
+.roll-result-card {
+  background: var(--surface-alt);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius);
+  padding: 14px;
+  text-align: center;
+}
+
+.roll-total {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1.1;
+}
+
+.dice-chips {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 10px 0;
+}
+
+.die-chip {
+  padding: 4px 10px;
+  border-radius: 5px;
+  font-size: 13.5px;
+  font-weight: 700;
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+}
+
+.die-chip.cancelled {
+  text-decoration: line-through;
+  color: var(--danger);
+  border-color: var(--danger);
+  opacity: 0.65;
+}
+
+.die-chip.pavor {
+  border-color: var(--warning);
+  color: var(--warning);
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.history-item {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 9px 12px;
+  font-size: 13.5px;
+  line-height: 1.45;
+}

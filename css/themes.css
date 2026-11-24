@@ -1,0 +1,221 @@
+/* =========================================================================
+   TEMAS DOS ELEMENTOS & TEXTURAS TÁTEIS — ORDEM PARANORMAL II
+   Foco: Textura de arquivo/pergaminho, grão orgânico e símbolos dos 5 Elementos
+   ========================================================================= */
+:root, body.theme-morte {
+  --element-sigil: url("../assets/sigils/morte.png");
+  --bg: #090a0c;
+  --surface: #121418;
+  --surface-elevated: #1a1d24;
+  --surface-alt: #0d0f12;
+  --border: rgba(255, 255, 255, 0.11);
+  --border-strong: rgba(255, 255, 255, 0.19);
+  --border-accent: rgba(226, 232, 240, 0.38);
+
+  --text: #f3f4f6;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+
+  --primary: #e2e8f0;
+  --primary-hover: #ffffff;
+  --primary-soft: rgba(226, 232, 240, 0.12);
+  --primary-text: #090a0c;
+
+  --danger: #f87171;
+  --danger-soft: rgba(248, 113, 113, 0.13);
+  --success: #4ade80;
+  --success-soft: rgba(74, 222, 128, 0.13);
+  --warning: #fbbf24;
+  --warning-soft: rgba(251, 191, 36, 0.12);
+  --warning-border: rgba(251, 191, 36, 0.35);
+  --info: #38bdf8;
+  --info-soft: rgba(56, 189, 248, 0.13);
+  --violet: #c084fc;
+  --violet-soft: rgba(192, 132, 252, 0.13);
+
+  --poi-local: #38bdf8;
+  --poi-local-soft: rgba(56, 189, 248, 0.09);
+  --poi-objeto: #fbbf24;
+  --poi-objeto-soft: rgba(251, 191, 36, 0.09);
+
+  --radius: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 3px 10px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  --shadow-md: 0 10px 28px rgba(0, 0, 0, 0.44), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --noise-opacity: 0.042;
+  --watermark-opacity: 0.048;
+  --card-alpha: 0.82;
+  --card-bg: rgba(255, 255, 255, var(--card-alpha));
+}
+
+body.theme-sangue {
+  --element-sigil: url("../assets/sigils/sangue.png");
+  --bg: #11090b;
+  --surface: #1a0f12;
+  --surface-elevated: #241519;
+  --surface-alt: #140b0d;
+  --border: rgba(255, 195, 200, 0.12);
+  --border-strong: rgba(255, 195, 200, 0.21);
+  --border-accent: rgba(248, 113, 113, 0.45);
+  --text: #faf2f2;
+  --text-secondary: #e2c6c9;
+  --text-muted: #ad8b90;
+  --primary: #f87171;
+  --primary-hover: #fca5a5;
+  --primary-soft: rgba(248, 113, 113, 0.15);
+  --primary-text: #12080a;
+}
+
+body.theme-conhecimento {
+  --element-sigil: url("../assets/sigils/conhecimento.png");
+  --bg: #110e09;
+  --surface: #1a150e;
+  --surface-elevated: #241e14;
+  --surface-alt: #14100a;
+  --border: rgba(251, 191, 36, 0.14);
+  --border-strong: rgba(251, 191, 36, 0.23);
+  --border-accent: rgba(251, 191, 36, 0.45);
+  --text: #fbf8f1;
+  --text-secondary: #e6dcc3;
+  --text-muted: #b0a080;
+  --primary: #fbbf24;
+  --primary-hover: #fcd34d;
+  --primary-soft: rgba(251, 191, 36, 0.15);
+  --primary-text: #120f08;
+}
+
+body.theme-energia {
+  --element-sigil: url("../assets/sigils/energia.png");
+  --bg: #0d0914;
+  --surface: #151020;
+  --surface-elevated: #1f172e;
+  --surface-alt: #100c18;
+  --border: rgba(192, 132, 252, 0.14);
+  --border-strong: rgba(192, 132, 252, 0.24);
+  --border-accent: rgba(192, 132, 252, 0.45);
+  --text: #f7f3fc;
+  --text-secondary: #ddd0ed;
+  --text-muted: #a190b8;
+  --primary: #c084fc;
+  --primary-hover: #d8b4fe;
+  --primary-soft: rgba(192, 132, 252, 0.15);
+  --primary-text: #0f0a17;
+}
+
+/* Tema Medo: Papel de Dossiê Envelhecido / Arquivo Físico Texturizado */
+body.theme-medo {
+  --element-sigil: url("../assets/sigils/medo.png");
+  --bg: #eaecef;
+  --surface: #fbfbfa;
+  --surface-elevated: #f3f4f2;
+  --surface-alt: #e6e8ea;
+  --border: rgba(15, 23, 42, 0.12);
+  --border-strong: rgba(15, 23, 42, 0.21);
+  --border-accent: rgba(14, 116, 144, 0.4);
+
+  --text: #111827;
+  --text-secondary: #334155;
+  --text-muted: #5b677a;
+
+  --primary: #0f766e;
+  --primary-hover: #115e59;
+  --primary-soft: rgba(15, 118, 110, 0.11);
+  --primary-text: #ffffff;
+
+  --danger: #dc2626;
+  --danger-soft: rgba(220, 38, 38, 0.09);
+  --success: #15803d;
+  --success-soft: rgba(21, 128, 61, 0.1);
+  --warning: #b45309;
+  --warning-soft: #fef9c3;
+  --warning-border: #fde047;
+  --info: #0369a1;
+  --info-soft: rgba(3, 105, 161, 0.09);
+  --violet: #6d28d9;
+  --violet-soft: rgba(109, 40, 217, 0.09);
+
+  --poi-local: #0369a1;
+  --poi-local-soft: rgba(3, 105, 161, 0.07);
+  --poi-objeto: #b45309;
+  --poi-objeto-soft: rgba(180, 83, 9, 0.07);
+
+  --shadow-sm: 0 2px 6px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  --shadow-md: 0 8px 22px rgba(15, 23, 42, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --noise-opacity: 0.032;
+  --watermark-opacity: 0.055;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  position: relative;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 15.5px;
+  background-color: var(--bg);
+  /* Textura de mesa investigativa: vinheta profunda + micro-fibras diagonais + grade topográfica */
+  background-image:
+    radial-gradient(ellipse at 50% 0%, var(--primary-soft) 0%, transparent 62%),
+    radial-gradient(circle at 50% 50%, transparent 55%, rgba(0, 0, 0, 0.35) 100%),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(128, 128, 128, 0.018) 0px,
+      rgba(128, 128, 128, 0.018) 1px,
+      transparent 1px,
+      transparent 6px
+    ),
+    linear-gradient(to right, rgba(128, 128, 128, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(128, 128, 128, 0.03) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 12px 12px, 36px 36px, 36px 36px;
+  color: var(--text);
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Camada global de granulação tátil (papel / filme fotográfico investigativo) */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: var(--noise-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+}
+
+.mono {
+  font-family: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* Scrollbars discretas */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}

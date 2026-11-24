@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Ambientes Virtuais
+venv/
+.venv/
+env/
+ENV/
+
+# Empacotamento / Executáveis (PyInstaller)
+build/
+dist/
+*.spec
+*.exe
+
+# Banco de Dados Local (evita subir dados pessoais de campanha)
+*.db
+*.sqlite
+*.sqlite3
+
+# IDEs e Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Sistema Operacional
+.DS_Store
+Thumbs.db
+desktop.ini

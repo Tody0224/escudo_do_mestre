@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ordo Realitas — Escudo do Mestre &amp; Dossiê de Investigação</title>
+  <link rel="stylesheet" href="css/themes.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/scene.css" />
+  <link rel="stylesheet" href="css/sheets.css" />
+  <link rel="stylesheet" href="css/dice.css" />
+  <link rel="stylesheet" href="css/combat.css" />
+</head>
+<body class="theme-morte">
+  <!-- =======================================================================
+       BARRA LATERAL ESQUERDA: ARQUIVO DE CASOS & CENAS
+       ======================================================================= -->
+  <aside id="leftSidebar" class="left-sidebar" aria-label="Arquivo de Casos e Cenas">
+    <!-- 1. Cabeçalho / Selo da Ordem -->
+    <header class="brand-header">
+      <div class="brand-title">
+        <span class="sigil-icon" aria-hidden="true"></span>
+        <div class="brand-text">
+          <h1>ESCUDO DO MESTRE</h1>
+          <span class="brand-sub mono">Ordem Paranormal II • Arquivo</span>
+        </div>
+      </div>
+      <button class="icon-btn sidebar-collapse-btn" onclick="toggleLeftSidebar()" title="Recolher arquivo lateral" aria-label="Recolher barra lateral">&laquo;</button>
+    </header>
+
+    <!-- 2. Bloco: Caso / Campanha Ativa -->
+    <section class="sidebar-campaign-card" aria-label="Caso Ativo">
+      <div class="sidebar-section-top">
+        <span class="sidebar-kicker">Caso / Campanha</span>
+        <button id="newCampaignBtn" class="primary sidebar-mini-primary" title="Abrir novo caso">+ Novo</button>
+      </div>
+
+      <select id="campaignSelect" class="campaign-main-select" aria-label="Selecionar caso ou campanha ativa"></select>
+
+      <div class="campaign-toolbar-strip">
+        <button id="renameCampaignBtn" class="sidebar-sub-btn" title="Renomear caso atual">Renomear</button>
+        <button id="toggleCampaignFilterBtn" class="sidebar-sub-btn" onclick="toggleSidebarDrawer('campaignFilterDrawer', this)" title="Filtrar ou ordenar casos">Filtrar</button>
+        <button id="toggleCampaignJsonBtn" class="sidebar-sub-btn" onclick="toggleSidebarDrawer('campaignJsonDrawer', this)" title="Exportar ou importar dossiê em JSON">JSON</button>
+        <button id="deleteCampaignBtn" class="sidebar-sub-btn danger" title="Arquivar/excluir caso atual">Excluir</button>
+      </div>
+
+      <!-- Gaveta retrátil: Filtro & Ordenação de Campanhas -->
+      <div id="campaignFilterDrawer" class="sidebar-drawer hidden">
+        <input id="campaignFilterInput" placeholder="Buscar caso..." aria-label="Buscar caso" />
+        <select id="campaignSortSelect" style="width: 102px;" aria-label="Ordenar casos">
+          <option value="default">Recentes</option>
+          <option value="az">A–Z</option>
+          <option value="za">Z–A</option>
+        </select>
+      </div>
+
+      <!-- Gaveta retrátil: Backup / IA em JSON -->
+      <div id="campaignJsonDrawer" class="sidebar-drawer hidden">
+        <button id="exportCampaignJsonBtn" class="sidebar-sub-btn" style="flex:1;" onclick="exportCampaignJson()" title="Exportar caso completo em JSON">↑ Exportar</button>
+        <button id="importCampaignJsonBtn" class="sidebar-sub-btn" style="flex:1;" onclick="openImportCampaignModal()" title="Importar caso de JSON">↓ Importar</button>
+      </div>
+    </section>
+
+    <!-- 3. Bloco Principal: Cenas da Investigação -->
+    <section class="sidebar-scenes-section" aria-label="Cenas da Investigação">
+      <div class="scenes-header">
+        <div style="display:flex; align-items:center; gap:7px;">
+          <span>Cenas</span>
+          <span id="sceneCountBadge" class="sidebar-count-pill mono">0</span>
+        </div>
+        <button id="newSceneBtn" class="primary sidebar-mini-primary" title="Registrar nova cena">+ Cena</button>
+      </div>
+
+      <div class="scene-filter-box">
+        <div class="scene-search-wrap">
+          <input id="sceneFilterInput" placeholder="Filtrar cenas..." aria-label="Filtrar cenas" />
+          <button id="clearSceneFilterBtn" type="button" class="scene-clear-input hidden" onclick="clearSceneFilter()" title="Limpar filtro" aria-label="Limpar filtro">×</button>
+        </div>
+        <select id="sceneSortSelect" style="width: 94px;" aria-label="Ordenar cenas">
+          <option value="position">Ordem</option>
+          <option value="az">A–Z</option>
+          <option value="za">Z–A</option>
+        </select>
+      </div>
+
+      <div id="sceneList" class="scene-list" role="list"></div>
+    </section>
+
+    <!-- 4. Rodapé: Elemento Paranormal & Sincronização -->
+    <footer class="sidebar-footer">
+      <div class="footer-theme-group">
+        <label for="themeSelect" class="footer-theme-label" style="margin:0;">Elemento</label>
+        <select id="themeSelect" class="theme-select" title="Afinidade / Tema Visual">
+          <option value="theme-morte" selected>Morte</option>
+          <option value="theme-sangue">Sangue</option>
+          <option value="theme-conhecimento">Conhecimento</option>
+          <option value="theme-energia">Energia</option>
+          <option value="theme-medo">Medo (Claro)</option>
+        </select>
+      </div>
+      <span class="sync-pill mono" title="Banco de dados SQLite local">
+        <span class="sync-dot"></span>
+        <span id="saveStatus">Salvo</span>
+      </span>
+    </footer>
+  </aside>
+
+  <!-- =======================================================================
+       WORKSPACE CENTRAL — MESA DO MESTRE
+       ======================================================================= -->
+  <main>
+    <nav class="top-toolbar" aria-label="Navegação Principal">
+      <div style="display:flex; align-items:center; gap:12px; min-width:0;">
+        <button id="toggleLeftSidebarBtn" class="icon-btn" onclick="toggleLeftSidebar()" title="Mostrar ou ocultar arquivo de cenas">&laquo; Arquivo</button>
+        <div id="topBreadcrumb" class="top-context-breadcrumb mono">
+          Dossiê → Etapas → Locais &amp; Pistas
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <button id="navSceneBtn" class="icon-btn primary" onclick="setMainView('scene')">Investigação</button>
+        <button id="navCombatBtn" class="icon-btn" onclick="setMainView('combat')">Combate</button>
+        <button id="navRulesBtn" class="icon-btn" onclick="setMainView('rules')">Regras</button>
+        <button id="navMechanicsBtn" class="icon-btn" onclick="setMainView('mechanics')">Notas do Caso</button>
+        <button id="navSheetsBtn" class="icon-btn" onclick="setMainView('sheets')">Agentes</button>
+        <span class="topbar-divider" aria-hidden="true"></span>
+        <button id="toggleDiceBtn" class="icon-btn">Dados</button>
+      </div>
+    </nav>
+
+    <div id="mainWorkspace" style="flex:1 1 0%; min-height:0; display:flex; flex-direction:column; overflow:hidden;"></div>
+  </main>
+
+  <!-- =======================================================================
+       PAINEL DIREITO: CENTRAL DE DADOS
+       ======================================================================= -->
+  <aside id="diceSidebar" class="dice-sidebar" aria-label="Central de Dados">
+    <div class="dice-header">
+      <h2>Central de Dados</h2>
+      <button class="icon-btn" onclick="toggleDiceSidebar()" aria-label="Fechar painel de dados">✕</button>
+    </div>
+
+    <div class="dice-mode-tabs">
+      <button id="modeDualBtn" class="dice-mode-btn active" onclick="setDiceMode('dual')">Rolagem Dupla</button>
+      <button id="modeSingleBtn" class="dice-mode-btn" onclick="setDiceMode('single')">Rolagem Única</button>
+    </div>
+
+    <div class="dice-body" id="diceBody"></div>
+  </aside>
+
+  <script src="js/constants.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/sheets.js"></script>
+  <script src="js/scene.js"></script>
+  <script src="js/scene_poi.js"></script>
+  <script src="js/scene_npcs.js"></script>
+  <script src="js/combat.js"></script>
+  <script src="js/campaign_notes.js"></script>
+  <script src="js/rules_reference.js"></script>
+  <script src="js/dice.js"></script>
+  <script src="js/crud.js"></script>
+</body>
+</html>
